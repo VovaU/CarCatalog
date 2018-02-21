@@ -11,8 +11,8 @@ using System;
 namespace CarCatalog.Migrations
 {
     [DbContext(typeof(CarCatalogDbContext))]
-    [Migration("20180220202511_ApplyConstractions")]
-    partial class ApplyConstractions
+    [Migration("20180221161507_seed")]
+    partial class seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,20 @@ namespace CarCatalog.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CarCatalog.Models.Feature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Features");
+                });
 
             modelBuilder.Entity("CarCatalog.Models.Make", b =>
                 {
