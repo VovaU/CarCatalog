@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CarCatalog.Controllers.Resources;
-using CarCatalog.Models;
+using CarCatalog.Core.Models;
 using CarCatalog.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +26,6 @@ namespace CarCatalog.Controllers
         {
             var makes= await context.Makes.Include(m => m.Models).ToListAsync();
             return mapper.Map<List<Make>, List<MakeResource>>(makes);
-        }
+        }       
     }
 }

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CarCatalog.Controllers.Resources;
-using CarCatalog.Models;
+using CarCatalog.Core.Models;
+using CarCatalog.Core.Models;
 using CarCatalog.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,10 +23,10 @@ namespace CarCatalog.Controllers
             this.context = context;
         }
         [HttpGet("/api/features")]
-        public async Task<IEnumerable<FeatureResource>> GetFeatures()
+        public async Task<IEnumerable<KeyValuePairResource>> GetFeatures()
         {
             var features = await context.Features.ToListAsync();
-            return mapper.Map<List<Feature>, List<FeatureResource>>(features);
+            return mapper.Map<List<Feature>, List<KeyValuePairResource>>(features);
         }
     }
 }

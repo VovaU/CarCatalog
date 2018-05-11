@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CarCatalog.Core;
 using CarCatalog.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,8 @@ namespace CarCatalog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IVehicleRepository, VehicleRepositoy>(); 
             services.AddAutoMapper();
             services.AddDbContext<CarCatalogDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Default")));
